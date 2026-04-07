@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.container {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.sidebar a:hover {
+  background: #34495e;
+  padding: 5px;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Topbar */
+.topbar input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  background: #ecf0f1;
+  padding: 20px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.card button {
+  margin-top: 10px;
+  padding: 5px 10px;
+}
