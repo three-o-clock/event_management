@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Register Event</title>
+    <title>Register</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
 
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <a href="index.html">Home</a>
-        <a href="events.html">Event History</a>
-        <a href="create.html">Create Event</a>
-        <a href="#" onclick="goProfile()"> Profile</a>
-        <a href="#" onclick="logout()">Logout</a>
-    </div>
+<div class="sidebar">
+    <h2>Menu</h2>
+    <a href="index.html">Home</a>
+    <a href="#">Event History</a>
+    <a href="#">Create Event</a>
+    <a href="#">Profile</a>
+    <a href="#">Logout</a>
+</div>
 
-    <div class="main-content">
+<div class="main-content">
     <div class="container">
-        <h1>Event Registration</h1>
+
+        <h1>Register for Event</h1>
 
         <div id="eventDetails" class="event-info"></div>
 
         <form id="registrationForm">
 
-            <!-- SOLO fields -->
-
+            <!-- SOLO -->
             <div id="soloFields">
                 <input type="text" id="name" placeholder="Your Name">
                 <input type="email" id="email" placeholder="Your Email">
             </div>
 
-            <!-- TEAM fields -->
-
+            <!-- TEAM -->
             <div id="teamFields">
                 <input type="text" id="leaderName" placeholder="Team Leader Name">
                 <input type="email" id="leaderEmail" placeholder="Leader Email">
@@ -49,12 +46,10 @@
 
         </form>
 
-
     </div>
-    </div>
+</div>
 
-    <script src="js/register.js"></script>
+<script src="js/register.js"></script>
 
 </body>
-
 </html>

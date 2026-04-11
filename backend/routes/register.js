@@ -3,7 +3,8 @@ const router = express.Router();
 const db = require("../db");
 
 router.post("/", (req, res) => {
-    console.log("Register route hit");
+    console.log("🔥 REGISTER HIT");
+    console.log(req.body);
 
     const {
         eventId,
@@ -21,27 +22,22 @@ router.post("/", (req, res) => {
         VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
-    // The callback (err, result) must be INSIDE the db.query arguments
-    db.query(
-        query, 
-        [
-            eventId,
-            name || null,
-            email || null,
-            teamName || null,
-            teamSize || null,
-            leaderName || null,
-            leaderEmail || null
-        ], 
-        (err, result) => {
-            if (err) {
-                console.error("Database Error:", err);
-                return res.status(500).send("DB error");
-            }
-
-            res.send("Registered successfully");
+    db.query(query, [
+        eventId,
+        name || null,
+        email || null,
+        teamName || null,
+        teamSize || null,
+        leaderName || null,
+        leaderEmail || null
+    ], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("DB error");
         }
-    );
-}); // Added missing closing brace and parenthesis here
+
+        res.send("Registered successfully");
+    });
+});
 
 module.exports = router;

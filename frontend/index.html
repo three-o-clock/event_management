@@ -12,9 +12,9 @@
   <div class="sidebar">
     <h2>Menu</h2>
     <a href="index.html">Home</a>
-    <a href="events.html">Event History</a>
-    <a href="create.html">Create Event</a>
-    <a href="#" onclick="goProfile()"> Profile</a>
+    <a href="#">Event History</a>
+    <a href="#">Create Event</a>
+    <a href="#" onclick="goProfile()">Profile</a>
     <a href="#" onclick="logout()">Logout</a>
   </div>
 
@@ -26,40 +26,14 @@
       <input type="text" placeholder="Search events...">
     </div>
 
-    <!-- Static Event Cards -->
+    <!-- Events -->
     <h1>Upcoming Events</h1>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>Technical Workshop</h3>
-        <p>Time: 10:00 AM</p>
-        <button onclick="openPopup('technical')">View</button>
-      </div>
-
-      <div class="card">
-        <h3>Hackathon</h3>
-        <p>Time: 2:00 PM</p>
-        <button onclick="openPopup('hackathon')">View</button>
-      </div>
-
-      <div class="card">
-        <h3>Coding Contest</h3>
-        <p>Time: 5:00 PM</p>
-        <button onclick="openPopup('coding')">View</button>
-      </div>
-
-    </div>
-
-    <!-- ✅ NEW: Dynamic Events from Database -->
-    <h2>Events from Database</h2>
-    <ul id="eventsList"></ul>
+    <div class="cards" id="eventsContainer"></div>
 
   </div>
-
 </div>
 
-<!-- 🔥 UPDATED POPUP -->
+<!-- ✅ SINGLE CLEAN POPUP -->
 <div id="popup" class="popup">
   <div class="popup-content">
     <span id="closeBtn">&times;</span>
@@ -67,13 +41,13 @@
     <h2 id="eventTitle"></h2>
     <p id="eventSummary"></p>
 
-    <h4>Eligibility:</h4>
     <ul id="eventCriteria"></ul>
 
-    <button onclick="registerEvent()">Register</button>
+    <button id="registerBtn">Register</button>
   </div>
 </div>
 
+<!-- ✅ ONLY ONE SCRIPT -->
 <script src="js/home.js"></script>
 
 </body>

@@ -1,93 +1,79 @@
-function openPopup(type) {
+let selectedEventId = null;
+
+// 🔹 OPEN POPUP
+function openPopup(event) {
     const popup = document.getElementById("popup");
     popup.style.display = "flex";
 
-    let title = "";
-    let summary = "";
-    let criteria = [];
+    selectedEventId = event.id;
 
-    if (type === "technical") {
-        title = "Technical Workshop";
-        summary = "Learn web development basics and build real projects.";
-        criteria = ["Age: 18+", "B.Tech background preferred"];
-    }
+    console.log("Selected Event ID:", selectedEventId); // debug
 
-    if (type === "hackathon") {
-        title = "Hackathon";
-        summary = "24-hour coding challenge to solve real-world problems.";
-        criteria = ["Age: 18+", "Coding knowledge required"];
-    }
-
-    if (type === "coding") {
-        title = "Coding Contest";
-        summary = "Competitive programming contest with exciting prizes.";
-        criteria = ["Open for all", "Basic programming required"];
-    }
-
-    document.getElementById("eventTitle").innerText = title;
-    document.getElementById("eventSummary").innerText = summary;
+    document.getElementById("eventTitle").innerText = event.name;
+    document.getElementById("eventSummary").innerText = event.description || "No description";
 
     const list = document.getElementById("eventCriteria");
     list.innerHTML = "";
+
+    const criteria = [
+        `Type: ${event.type}`,
+        `Participation: ${event.participation_type}`,
+        `Team Size: ${event.team_size}`,
+        `Venue: ${event.venue}`,
+        `Date: ${event.event_date}`,
+        `Time: ${event.event_time}`,
+        `Eligibility: ${event.eligibility}`
+    ];
 
     criteria.forEach(item => {
         const li = document.createElement("li");
         li.innerText = item;
         list.appendChild(li);
     });
+
+    // ✅ IMPORTANT: attach here
+    document.getElementById("registerBtn").onclick = () => {
+        console.log("Redirecting with ID:", selectedEventId);
+        window.location.href = `register.html?eventId=${selectedEventId}`;
+    };
 }
 
 function registerEvent() {
-    // For now we use fixed values (we improve later)
-    const data = {
-        user_id: 1,
-        event_id: 1
-    };
-
-    fetch('http://localhost:3000/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(result => {
-        alert("Registered successfully!");
-        console.log(result);
-    })
-    .catch(error => {
-        console.log(error);
-        alert("Error registering!");
-    });
-}
-function goProfile() {
-    alert("Profile page coming soon!");
+    console.log("Redirecting with ID:", selectedEventId);
+    window.location.href = `register.html?eventId=${selectedEventId}`;
 }
 
-function logout() {
-    alert("Logged out!");
-    window.location.href = "index.html";
-}
+document.getElementById("closeBtn").onclick = function () {
+    document.getElementById("popup").style.display = "none";
+};
 
-// Close popup
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("closeBtn").onclick = function () {
-        document.getElementById("popup").style.display = "none";
-    };
-});
+// 🔹 LOAD EVENTS
+async function loadEvents() {
+    const res = await fetch("http://localhost:3000/events");
+    const data = await res.json();
 
-
-// ✅ NEW: FETCH EVENTS FROM BACKEND (STEP 3.3)
-fetch('http://localhost:3000/events')
-.then(response => response.json())
-.then(data => {
-    const list = document.getElementById('eventsList');
+    const container = document.getElementById("eventsContainer");
+    container.innerHTML = "";
 
     data.forEach(event => {
-        const li = document.createElement('li');
-        li.textContent = event.event_name;
-        list.appendChild(li);
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
+    <h3>${event.name}</h3>
+    <p><b>Time:</b> ${event.event_time || "N/A"}</p>
+    <p><b>Date:</b> ${event.event_date || "N/A"}</p>
+    <button>View</button>
+`;
+
+        card.querySelector("button").addEventListener("click", () => {
+            openPopup(event);
+        });
+
+        container.appendChild(card);
+        console.log("EVENT DATA:", data);
     });
-})
-.catch(error => console.log("Error fetching events:", error));
+}
+
+
+window.onload = loadEvents;

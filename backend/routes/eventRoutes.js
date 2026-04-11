@@ -6,9 +6,10 @@ const db = require("../db");
 router.get("/events", (req, res) => {
     db.query("SELECT * FROM events", (err, result) => {
         if (err) {
-            console.error(err);
-            return res.status(500).send("Error fetching events");
+            console.error("DB ERROR:", err);
+            return res.status(500).json({ error: "Database error" }); // IMPORTANT
         }
+
         res.json(result);
     });
 });
