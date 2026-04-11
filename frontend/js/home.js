@@ -1,4 +1,21 @@
-function openPopup(type) {
+// ✅ CHECK LOGIN (protect page)
+const userId = localStorage.getItem("user_id");
+
+if (!userId) {
+    alert("Please login first!");
+    window.location.href = "login.html";
+    throw new Error("Not logged in"); // stop execution
+}
+
+
+// ✅ GLOBAL VARIABLE
+let selectedEventId = null;
+
+
+// ✅ OPEN POPUP FUNCTION
+function openPopup(type, eventId) {
+    selectedEventId = eventId;
+
     const popup = document.getElementById("popup");
     popup.style.display = "flex";
 
@@ -37,11 +54,18 @@ function openPopup(type) {
     });
 }
 
+
+// ✅ REGISTER FUNCTION (DYNAMIC USER + EVENT)
 function registerEvent() {
-    // For now we use fixed values (we improve later)
+
+    if (!selectedEventId) {
+        alert("Please select an event first!");
+        return;
+    }
+
     const data = {
-        user_id: 1,
-        event_id: 1
+        user_id: localStorage.getItem("user_id"),
+        event_id: selectedEventId
     };
 
     fetch('http://localhost:3000/register', {
@@ -51,7 +75,12 @@ function registerEvent() {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.text())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Registration failed");
+        }
+        return response.text();
+    })
     .then(result => {
         alert("Registered successfully!");
         console.log(result);
@@ -61,16 +90,21 @@ function registerEvent() {
         alert("Error registering!");
     });
 }
+
+
+// ✅ PROFILE + LOGOUT
 function goProfile() {
     alert("Profile page coming soon!");
 }
 
 function logout() {
+    localStorage.removeItem("user_id");
     alert("Logged out!");
-    window.location.href = "index.html";
+    window.location.href = "login.html";
 }
 
-// Close popup
+
+// ✅ CLOSE POPUP
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("closeBtn").onclick = function () {
         document.getElementById("popup").style.display = "none";
@@ -78,14 +112,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// ✅ NEW: FETCH EVENTS FROM BACKEND (STEP 3.3)
+// ✅ FETCH EVENTS FROM BACKEND
 fetch('http://localhost:3000/events')
 .then(response => response.json())
 .then(data => {
     const list = document.getElementById('eventsList');
 
+    list.innerHTML = "";
+
     data.forEach(event => {
-        const li = document.createElement('li');
+        const li = document.createElement(
+            'li');
         li.textContent = event.event_name;
         list.appendChild(li);
     });
