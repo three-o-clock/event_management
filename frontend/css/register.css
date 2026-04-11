@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    background: #f5f5f5;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+}
+
+/* Sidebar (comes from styles.css ideally) */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+}
+
+/* Main content area */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    /* center horizontally */
+    align-items: flex-start;  /* ✅ instead of center */
+    padding-top: 40px;        /* add some spacing from top */
+}
+
+/* Form container */
+.container {
+    width: 400px;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    flex-direction: column;   
+}
+
+/* Heading fix */
+.container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 95%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+.event-info {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.event-info h2 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.event-info p {
+    margin: 4px 0;
+    color: #555;
+}

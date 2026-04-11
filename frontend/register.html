@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register Event</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="index.html">Home</a>
+        <a href="events.html">Event History</a>
+        <a href="create.html">Create Event</a>
+        <a href="#" onclick="goProfile()"> Profile</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="main-content">
+    <div class="container">
+        <h1>Event Registration</h1>
+
+        <div id="eventDetails" class="event-info"></div>
+
+        <form id="registrationForm">
+
+            <!-- SOLO fields -->
+
+            <div id="soloFields">
+                <input type="text" id="name" placeholder="Your Name">
+                <input type="email" id="email" placeholder="Your Email">
+            </div>
+
+            <!-- TEAM fields -->
+
+            <div id="teamFields">
+                <input type="text" id="leaderName" placeholder="Team Leader Name">
+                <input type="email" id="leaderEmail" placeholder="Leader Email">
+                <input type="text" id="teamName" placeholder="Team Name">
+                <input type="number" id="teamSize" placeholder="Team Size">
+                <div id="teamMembers"></div>
+            </div>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+
+    </div>
+    </div>
+
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>
