@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | EventSphere</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="loadProfile()">
+<div class="auth-container">
+
+    <p class="brand"><span class="brand-dot"></span>EventSphere</p>
+
+    <div class="profile-header">
+        <div class="avatar" id="avatar">?</div>
+        <div>
+            <p class="profile-name" id="profile-name">Loading...</p>
+            <span class="profile-role-badge" id="profile-role"></span>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+        <div class="profile-field">
+            <label>Email</label>
+            <span id="profile-email">—</span>
+        </div>
+        <div class="profile-field">
+            <label>Phone</label>
+            <span id="profile-phone">—</span>
+        </div>
+        <div class="profile-field">
+            <label>Department</label>
+            <span id="profile-department">—</span>
+        </div>
+        <div class="profile-field">
+            <label>Year</label>
+            <span id="profile-year">—</span>
+        </div>
+    </div>
+
+    <button class="btn-logout" onclick="logout()">Sign out</button>
+</div>
+<script src="js/auth.js"></script>
+</body>
+</html>

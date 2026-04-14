@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS event_db;
-USE event_db;
+CREATE DATABASE IF NOT EXISTS event_management_system;
+USE event_management_system;
 
 CREATE TABLE USER (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
